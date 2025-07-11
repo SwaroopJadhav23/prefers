@@ -23,6 +23,7 @@
             --font-family: 'Poppins', sans-serif;
             --success-color: #28a745;
             --error-color: #dc3545;
+            --whatsapp-green: #25D366;
         }
 
         * {
@@ -104,9 +105,32 @@
         #form-result { margin-top: 1rem; font-weight: 600; text-align: center;}
         
         .contact-info-container h2 { margin-bottom: 1.5rem; }
-        .contact-info-item { margin-bottom: 1.5rem; }
+        .contact-info-item { margin-bottom: 2rem; }
         .contact-info-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
         .map-container { border-radius: 8px; overflow: hidden; margin-top: 2rem; }
+
+        /* === NEW WHATSAPP BUTTON STYLE === */
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--whatsapp-green);
+            color: var(--white-color);
+            padding: 10px 15px;
+            border-radius: 25px; /* Rounded pill shape */
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .whatsapp-link:hover {
+            background-color: #1ebe57; /* Darker green on hover */
+            color: var(--white-color);
+            transform: scale(1.05);
+        }
+        .whatsapp-link svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            fill: var(--white-color);
+        }
 
         /* --- Footer --- */
         footer { background: var(--primary-color); color: #ccc; padding-top: 50px; }
@@ -127,6 +151,7 @@
         /* ========================================================= */
         @media (max-width: 900px) {
             .contact-grid { grid-template-columns: 1fr; }
+            .contact-info-container { margin-top: 40px; }
         }
 
         @media (max-width: 768px) {
@@ -145,16 +170,16 @@
         }
 
         .footer-bottom a {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
-}
+          color: var(--accent-color);
+          text-decoration: none;
+          font-weight: 600;
+          transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
 
-.footer-bottom a:hover {
-  text-decoration: underline;
-  color: var(--white-color);
-}
+        .footer-bottom a:hover {
+          text-decoration: underline;
+          color: var(--white-color);
+        }
 
     </style>
 </head>
@@ -197,17 +222,10 @@
                     <h2>Send Us a Message</h2>
                     <p>Ready to start a project or have a question? Fill out the form below, and our team will get back to you shortly.</p>
                     
-                    <!-- WEB3FORMS INTEGRATED FORM -->
                     <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-
-                        <!-- REQUIRED: Your Access Key -->
                         <input type="hidden" name="access_key" value="a37f4138-5c47-442e-9fe4-4a70d806ff47">
-                        
-                        <!-- OPTIONAL: Custom Subject and From Name for emails -->
                         <input type="hidden" name="subject" value="New Inquiry from Prefers Solutions Website">
                         <input type="hidden" name="from_name" value="Prefers Solutions Contact Form">
-                        
-                        <!-- OPTIONAL: Honeypot for spam protection -->
                         <input type="checkbox" name="botcheck" style="display: none;">
 
                         <div class="form-group">
@@ -246,6 +264,18 @@
                         <h3>Phone</h3>
                         <p><a href="tel:+919325692105">+91 9325692105</a></p>
                     </div>
+
+                    <!-- === NEW WHATSAPP CONTACT SECTION === -->
+                    <div class="contact-info-item">
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/919325692105" class="whatsapp-link" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.8 0-67.6-9.5-97.8-26.7l-7-4.1-72.3 19L56.6 386.5l-4.5-7.3c-18.9-30.6-28.8-66.2-28.8-102.7 0-108.6 88.4-197 197-197s197 88.4 197 197-88.4 197-197 197zm83.7-118.9c-4.4-2.2-26.2-12.9-30.3-14.3-4.1-1.4-7.1-2.2-10.1 2.2-3 4.4-11.4 14.3-14.1 17.3-2.6 3-5.2 3.3-9.7 1.1-4.4-2.2-18.6-6.8-35.4-21.8-13.1-11.8-22-26.4-24.6-31-2.6-4.4-.3-6.8 1.9-9s4.4-5.1 6.6-7.6c2.2-2.6 3-4.4 4.4-7.3s.7-5.2-.4-7.3c-1.1-2.2-10.1-24.3-13.8-33.2-3.6-8.8-7.3-7.6-10.1-7.7-2.6-.1-5.6-.1-8.6-.1-3 0-7.8 1.1-11.8 5.5-4.1 4.4-15.6 15.3-15.6 37.2 0 21.9 16 43.1 18.2 46.1 2.2 3 31.3 48.1 76.2 67.2 10.8 4.5 19.3 7.2 25.9 9.3 9.9 3.1 18.9 2.7 26.1 1.6 7.9-1.2 26.2-10.7 29.9-21.1 3.7-10.4 3.7-19.3 2.6-21.1-1.1-1.8-4.1-2.8-8.6-5.1z"/>
+                            </svg>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                    </div>
+                    
                     <div class="map-container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.32761895318!2d73.9398863154032!3d18.55883698738608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c13700000001%3A0x7fa86083810d8495!2sSpace%20Business%20Complex!5e0!3m2!1sen!2sin!4v1672661555555!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -278,15 +308,14 @@
                 </div>
             </div>
             <div class="footer-bottom">
-  <p>© 2025 Prefers Solutions. All Rights Reserved.</p>
-  <p>
-    Developed by 
-    <a href="https://www.fouriseindia.com/" target="_blank" rel="noopener noreferrer">
-      Fourise Software Solutions Pvt. Ltd.
-    </a>
-  </p>
-</div>
-
+              <p>© 2025 Prefers Solutions. All Rights Reserved.</p>
+              <p>
+                Developed by 
+                <a href="https://www.fouriseindia.com/" target="_blank" rel="noopener noreferrer">
+                  Fourise Software Solutions Pvt. Ltd.
+                </a>
+              </p>
+            </div>
         </div>
     </footer>
 
