@@ -161,8 +161,8 @@
         }
 
         /* --- Content Sections --- */
-        .featured-services, .why-choose-us { padding: 60px 0; }
-        .featured-services { background: var(--light-gray); }
+        .featured-services, .why-choose-us, .stats-section { padding: 60px 0; }
+        .featured-services, .testimonials-slider { background: var(--light-gray); }
         h2 { text-align: center; }
         .service-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
         .card {
@@ -175,6 +175,33 @@
         .card a { font-weight: 600; text-align: left; }
         .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; text-align: center; }
         .feature-item h3 { color: var(--secondary-color); }
+        
+        /* --- STATS COUNTER SECTION STYLES --- */
+        .stats-section {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+        .stats-section h2 {
+            color: var(--white-color);
+            margin-bottom: 40px;
+        }
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item h3.counter {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin: 0;
+        }
 
         /* --- Testimonial Slider --- */
         .testimonials-slider { background: var(--light-gray); padding: 60px 0; }
@@ -223,6 +250,21 @@
             nav li { margin: 15px 0; }
 
             .service-cards, .features, .footer-content { grid-template-columns: 1fr; }
+
+            /* --- Stats Counter Responsive Styles --- */
+            .stats-section {
+                /* Refinement: Reduced padding on mobile for better spacing */
+                padding: 50px 0;
+            }
+            .stats-container {
+                grid-template-columns: 1fr; /* Stack items vertically */
+                gap: 40px; /* Increase gap for vertical layout */
+            }
+            .stat-item h3.counter {
+                font-size: 3rem; /* Slightly smaller font for mobile */
+            }
+
+
             .footer-about, .footer-contact, .footer-links { margin-bottom: 20px; text-align: center; }
             .footer-about .footer-logo, .footer-about p { margin-left: auto; margin-right: auto; }
 
@@ -237,7 +279,6 @@
                 padding-left: 20px;  /* This adds the initial space on the left */
                 padding-right: 20px; /* This adds space on the right */
                 gap: 15px;
-
                 -ms-overflow-style: none; /* IE and Edge */
                 scrollbar-width: none; /* Firefox */
             }
@@ -245,7 +286,6 @@
             
             .testimonial-slide {
                 flex: 0 0 85%; /* Adjust width to leave space around it */
-                /* THIS IS THE KEY FIX: Center the slide in the viewport */
                 scroll-snap-align: center;
             }
         }
@@ -282,8 +322,8 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>Elevate Your Brand with Premium Corporate Gifting</h1>
-                <p>Customized printing solutions for memorable impressions. From diaries and mugs to custom apparel, we bring your vision to life.</p>
+                <h1>Welcome to Prefers Solutions – where ideas meet identity, and creativity meets craftsmanship</h1>
+                <p>From branded apparel to unforgettable corporate gifts – we've got you covered.</p>
                 <a href="gallery.html" class="btn-primary">Explore Our Work</a>
             </div>
         </section>
@@ -303,6 +343,22 @@
                     <div class="card">
                         <h3>Promotional Products</h3>
                         <p>A wide range of promotional items to boost your marketing efforts and increase brand visibility at events.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section" id="stats-section">
+            <div class="container">
+                <h2>Trusted By Brands</h2>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="100">0+</h3>
+                        <p>Corporate Clients</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="500">0+</h3>
+                        <p>Happy Customers</p>
                     </div>
                 </div>
             </div>
@@ -408,6 +464,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // --- Mobile Hamburger Menu ---
         const hamburgerMenu = document.getElementById('hamburger-menu');
         const navLinks = document.getElementById('nav-links');
         if (hamburgerMenu && navLinks) {
@@ -416,58 +473,87 @@
             });
         }
 
+        // --- Testimonial Slider (Existing Logic) ---
         const slider = document.getElementById('testimonial-slider');
-        if (!slider) return;
-        const slides = slider.querySelectorAll('.testimonial-slide');
-        if (slides.length === 0) return;
+        if (slider) {
+            const slides = slider.querySelectorAll('.testimonial-slide');
+            if (slides.length > 1) { // Only run if there are slides
+                const slideInterval = 3000;
+                let autoScrollInterval = setInterval(advanceSlider, slideInterval);
 
-        const slideInterval = 3000;
-
-        function advanceSlider() {
-            // Check if we're on a mobile device where snapping is active
-            const isMobile = window.innerWidth <= 768;
-            
-            // On mobile, find the slide that is currently snapped in the center
-            let currentSlideIndex = 0;
-            if (isMobile) {
-                let minDistance = Infinity;
-                const viewportCenter = slider.scrollLeft + slider.clientWidth / 2;
-                slides.forEach((slide, index) => {
-                    const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-                    const distance = Math.abs(viewportCenter - slideCenter);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        currentSlideIndex = index;
+                function advanceSlider() {
+                    const isMobile = window.innerWidth <= 768;
+                    let currentSlideIndex = 0;
+                    
+                    if (isMobile) {
+                        let minDistance = Infinity;
+                        const viewportCenter = slider.scrollLeft + slider.clientWidth / 2;
+                        slides.forEach((slide, index) => {
+                            const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+                            const distance = Math.abs(viewportCenter - slideCenter);
+                            if (distance < minDistance) {
+                                minDistance = distance;
+                                currentSlideIndex = index;
+                            }
+                        });
+                    } else {
+                        const slideWidth = slides[0].offsetWidth;
+                        const gap = parseInt(window.getComputedStyle(slider).gap);
+                        currentSlideIndex = Math.round(slider.scrollLeft / (slideWidth + gap));
                     }
+                
+                    let nextSlideIndex = (currentSlideIndex + 1) % slides.length;
+                    const nextSlide = slides[nextSlideIndex];
+                    const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
+
+                    slider.scrollTo({ 
+                        left: scrollLeftPosition, 
+                        behavior: 'smooth' 
+                    });
+                }
+            }
+        }
+
+
+        /* ========================================= */
+        /* === STATS COUNTER ANIMATION SCRIPT === */
+        /* ========================================= */
+        const statsSection = document.getElementById('stats-section');
+        const counters = document.querySelectorAll('.counter');
+
+        const startCounter = (entry) => {
+            if (entry.isIntersecting) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const duration = 1200; // 1.2 seconds for a fast animation
+                    const increment = target / (duration / 10); 
+
+                    const updateCount = () => {
+                        count += increment;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count) + '+';
+                            setTimeout(updateCount, 10);
+                        } else {
+                            counter.innerText = target + '+';
+                        }
+                    };
+
+                    updateCount();
                 });
-            } else {
-                 // On desktop, the logic is simpler as slides are not full-width
-                 const slideWidth = slides[0].offsetWidth;
-                 const gap = parseInt(window.getComputedStyle(slider).gap);
-                 currentSlideIndex = Math.round(slider.scrollLeft / (slideWidth + gap));
+                observer.unobserve(statsSection);
             }
-           
-            let nextSlideIndex = currentSlideIndex + 1;
+        };
 
-            if (nextSlideIndex >= slides.length) {
-                nextSlideIndex = 0; // Loop back to the start
-            }
+        const observer = new IntersectionObserver(
+            (entries) => entries.forEach(startCounter), 
+            { threshold: 0.5 } 
+        );
 
-            const nextSlide = slides[nextSlideIndex];
-            
-            // Calculate the scroll position to center the next slide
-            const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
-
-            slider.scrollTo({ 
-                left: scrollLeftPosition, 
-                behavior: 'smooth' 
-            });
+        if (statsSection) {
+            observer.observe(statsSection);
         }
 
-        // Only start auto-scrolling if there are enough slides to scroll
-        if (slides.length > 1) {
-            setInterval(advanceSlider, slideInterval);
-        }
     });
 </script>
 
