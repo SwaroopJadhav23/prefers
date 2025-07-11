@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Prefers Solutions</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles Embedded -->
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --primary-color: #063777; /* Deep Blue */
+            --secondary-color: #1C3F6E; /* Lighter Blue */
+            --accent-color: #FFD700; /* Gold/Yellow */
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --white-color: #fff;
+            --font-family: 'Poppins', sans-serif;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; }
+        p { margin-bottom: 1rem; }
+        a { text-decoration: none; color: var(--secondary-color); transition: color 0.3s ease; }
+        a:hover { color: var(--accent-color); }
+        ul { list-style: none; }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: var(--white-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { height: 50px; }
+        nav ul { display: flex; align-items: center; }
+        nav li { margin-left: 25px; }
+        nav a { font-weight: 600; font-size: 1rem; padding: 5px 10px; border-bottom: 2px solid transparent; }
+        nav a.active, nav a:hover { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); }
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger span { display: block; width: 25px; height: 3px; margin: 5px 0; background: var(--primary-color); transition: all 0.3s ease-in-out; }
+
+        /* --- General Section & Button Styles --- */
+        section { padding: 60px 0; }
+        .btn { display: inline-block; padding: 12px 25px; border-radius: 5px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; }
+        .btn-primary { background: var(--accent-color); color: var(--primary-color); }
+        .btn-primary:hover { background: #e6c300; color: var(--primary-color); transform: translateY(-2px); }
+        .page-header { background: var(--secondary-color); color: var(--white-color); padding: 40px 0; text-align: center; }
+        .page-header h1, .page-header p { color: var(--white-color); }
+        .page-header h1 { font-size: 2.5rem; }
+
+        /* ========================================================= */
+        /* ============= PROFESSIONAL CONTACT FORM STYLES ========== */
+        /* ========================================================= */
+        .contact-section { padding: 60px 0; }
+        .contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 50px; align-items: start; }
+        .contact-form-area h2 { margin-bottom: 0.5rem; }
+        .contact-form-area p { margin-bottom: 2rem; color: #555; }
+        .contact-form .form-group { margin-bottom: 1.5rem; }
+        .contact-form label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--primary-color); }
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea { width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 5px; font-family: var(--font-family); font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .contact-form input:focus,
+        .contact-form textarea:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+        .contact-form button[type="submit"] { width: 100%; padding: 15px; font-size: 1.1rem; margin-top: 1rem; }
+        
+        #form-result { margin-top: 1rem; font-weight: 600; text-align: center;}
+        
+        .contact-info-container h2 { margin-bottom: 1.5rem; }
+        .contact-info-item { margin-bottom: 1.5rem; }
+        .contact-info-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .map-container { border-radius: 8px; overflow: hidden; margin-top: 2rem; }
+
+        /* --- Footer --- */
+        footer { background: var(--primary-color); color: #ccc; padding-top: 50px; }
+        .footer-content { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 40px; padding-bottom: 40px; }
+        .footer-logo { height: 45px; margin-bottom: 1rem; filter: brightness(0) invert(1); }
+        .footer-about p { color: #ccc; max-width: 350px; }
+        .footer-contact p { color: #ccc; margin-bottom: 1rem; line-height: 1.5; }
+        .footer-contact p strong { color: var(--white-color); font-weight: 600; }
+        .footer-contact a, .footer-links a { color: #ccc; }
+        .footer-links h3 { color: var(--white-color); margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-contact a:hover, .footer-links a:hover { color: var(--accent-color); text-decoration: underline; }
+        .footer-bottom { text-align: center; padding: 20px 0; border-top: 1px solid var(--secondary-color); font-size: 0.9rem; color: #aaa; }
+        .footer-bottom p { margin: 0; }
+        
+        /* ========================================================= */
+        /* ================= MOBILE RESPONSIVE STYLES ============== */
+        /* ========================================================= */
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .page-header h1 { font-size: 2.2rem; }
+
+            .hamburger { display: block; }
+            nav ul { display: none; flex-direction: column; width: 100%; background: var(--white-color); position: absolute; top: 72px; left: 0; text-align: center; box-shadow: 0 5px 10px rgba(0,0,0,0.1); padding: 10px 0; }
+            nav ul.active { display: flex; }
+            nav li { margin: 15px 0; }
+            
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-about, .footer-contact, .footer-links { margin-bottom: 20px; }
+            .footer-about .footer-logo, .footer-about p { margin-left: auto; margin-right: auto; }
+        }
+
+        .footer-bottom a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+  color: var(--white-color);
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <!-- Make sure this logo path is correct -->
+                <img src="img/logo.png" alt="Prefers Solutions Logo" class="logo">
+            </a>
+            <nav>
+                <div class="hamburger" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Our Work</a></li>
+                    <li><a href="contactus.html" class="active">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p>We're here to help. Let's create something amazing together.</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container contact-grid">
+                <!-- Professionally Formatted Contact Form -->
+                <div class="contact-form-area">
+                    <h2>Send Us a Message</h2>
+                    <p>Ready to start a project or have a question? Fill out the form below, and our team will get back to you shortly.</p>
+                    
+                    <!-- WEB3FORMS INTEGRATED FORM -->
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+
+                        <!-- REQUIRED: Your Access Key -->
+                        <input type="hidden" name="access_key" value="a37f4138-5c47-442e-9fe4-4a70d806ff47">
+                        
+                        <!-- OPTIONAL: Custom Subject and From Name for emails -->
+                        <input type="hidden" name="subject" value="New Inquiry from Prefers Solutions Website">
+                        <input type="hidden" name="from_name" value="Prefers Solutions Contact Form">
+                        
+                        <!-- OPTIONAL: Honeypot for spam protection -->
+                        <input type="checkbox" name="botcheck" style="display: none;">
+
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="e.g., John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="e.g., john.doe@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="e.g., +91 98765 43210">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project or inquiry..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                    <p id="form-result"></p>
+                </div>
+                
+                <!-- Contact Info Area -->
+                <div class="contact-info-container">
+                    <h2>Contact Information</h2>
+                    <div class="contact-info-item">
+                        <h3>Address</h3>
+                        <p>416, Space Business Complex, Grant Road Kharadi, Pune, Maharashtra 411014</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:preferssolutions@gmail.com">preferssolutions@gmail.com</a></p>
+                    </div>
+                    <div class="contact-info-item">
+                        <h3>Phone</h3>
+                        <p><a href="tel:+919325692105">+91 9325692105</a></p>
+                    </div>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.32761895318!2d73.9398863154032!3d18.55883698738608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c13700000001%3A0x7fa86083810d8495!2sSpace%20Business%20Complex!5e0!3m2!1sen!2sin!4v1672661555555!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="img/logo.png" alt="Prefers Solutions Logo" class="footer-logo">
+                    <p>Your trusted partner for professional printing and corporate gifting solutions.</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><strong>Address:</strong> 416, Space Business Complex, Grant Road Kharadi, Pune 411014</p>
+                    <p><strong>Email:</strong> <a href="mailto:preferssolutions@gmail.com">preferssolutions@gmail.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+919325692105">+91 9325692105</a></p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Our Work</a></li>
+                        <li><a href="contactus.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+  <p>© 2025 Prefers Solutions. All Rights Reserved.</p>
+  <p>
+    Developed by 
+    <a href="https://www.fouriseindia.com/" target="_blank" rel="noopener noreferrer">
+      Fourise Software Solutions Pvt. Ltd.
+    </a>
+  </p>
+</div>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript Embedded -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Mobile Navigation Menu Toggle ---
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            if (hamburgerMenu && navLinks) {
+                hamburgerMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            const allNavLinks = document.querySelectorAll('#nav-links a');
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- Web3Forms Contact Form Submission Script ---
+            const form = document.querySelector('.contact-form');
+            const result = document.getElementById('form-result');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(form);
+                    const object = Object.fromEntries(formData.entries());
+                    const json = JSON.stringify(object);
+                    
+                    result.style.display = "block";
+                    result.innerHTML = "Sending...";
+                    result.style.color = "var(--secondary-color)";
+
+                    fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: json
+                        })
+                        .then(async (response) => {
+                            let jsonResponse = await response.json();
+                            if (response.status == 200) {
+                                result.style.color = "var(--success-color)";
+                                result.innerHTML = jsonResponse.message || "Message Sent Successfully!";
+                            } else {
+                                console.log(response);
+                                result.style.color = "var(--error-color)";
+                                result.innerHTML = jsonResponse.message || "Something went wrong!";
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            result.style.color = "var(--error-color)";
+                            result.innerHTML = "Something went wrong!";
+                        })
+                        .then(function() {
+                            form.reset();
+                            setTimeout(() => {
+                                result.style.display = "none";
+                            }, 5000); // Hide the result message after 5 seconds
+                        });
+                });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | Prefers Solutions</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles Embedded -->
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --primary-color: #063777; --secondary-color: #1C3F6E; --accent-color: #FFD700; --text-color: #333;
+            --light-gray: #f8f9fa; --white-color: #fff; --font-family: 'Poppins', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); color: var(--text-color); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { color: var(--primary-color); margin-bottom: 1rem; line-height: 1.2; }
+        h1 { font-size: 2.8rem; }
+        p { margin-bottom: 1rem; }
+        a { text-decoration: none; color: var(--secondary-color); transition: color 0.3s ease; }
+        a:hover { color: var(--accent-color); }
+        ul { list-style: none; }
+
+        /* --- Header & Navigation --- */
+        header { background: var(--white-color); box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; }
+        .logo { height: 50px; }
+        nav ul { display: flex; align-items: center; }
+        nav li { margin-left: 25px; }
+        nav a { font-weight: 600; font-size: 1rem; padding: 5px 10px; border-bottom: 2px solid transparent; }
+        nav a.active, nav a:hover { color: var(--primary-color); border-bottom: 2px solid var(--accent-color); }
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger span { display: block; width: 25px; height: 3px; margin: 5px 0; background: var(--primary-color); }
+
+        /* --- Page Header --- */
+        .page-header { background: var(--secondary-color); color: var(--white-color); padding: 40px 0; text-align: center; }
+        .page-header h1, .page-header p { color: var(--white-color); }
+        .page-header h1 { font-size: 2.5rem; }
+
+        /* --- Professional Gallery Styles --- */
+        .gallery-section { padding: 60px 0; }
+        .gallery-intro { text-align: center; max-width: 700px; margin: 0 auto 50px auto; font-size: 1.1rem; color: #555; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 8px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); background-color: var(--light-gray); aspect-ratio: 1 / 1; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease-out; }
+        .gallery-item .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 38, 71, 0.75); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease; }
+        .gallery-item .overlay-content { color: var(--white-color); text-align: center; padding: 20px; transform: translateY(10px); transition: transform 0.4s ease; }
+        .gallery-item .overlay-content h3 { color: var(--white-color); font-size: 1.5rem; font-weight: 600; margin: 0; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover .overlay { opacity: 1; }
+        .gallery-item:hover .overlay-content { transform: translateY(0); }
+        
+        /* --- NEW: Quote Button Styles --- */
+        .quote-btn {
+            margin-top: 15px;
+            padding: 8px 18px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        .gallery-item:hover .quote-btn {
+            transform: scale(1);
+            opacity: 1;
+            transition-delay: 0.1s; /* Delay button appearance slightly */
+        }
+        .quote-btn:hover {
+            background-color: #e6c300; /* Darker accent color */
+        }
+        .quote-btn:disabled {
+            background-color: #5cb85c; /* Green for success */
+            color: var(--white-color);
+            cursor: not-allowed;
+        }
+        
+        /* --- Footer --- */
+        footer { background: var(--primary-color); color: #ccc; padding-top: 50px; margin-top: 30px; }
+        .footer-content { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 40px; padding-bottom: 40px; max-width: 1100px; margin: 0 auto; }
+        .footer-logo { height: 45px; margin-bottom: 1rem; filter: brightness(0) invert(1); }
+        .footer-about p { color: #ccc; max-width: 350px; }
+        .footer-contact h3, .footer-links h3 { color: var(--white-color); }
+        .footer-contact p { color: #ccc; margin-bottom: 1rem; line-height: 1.5; }
+        .footer-contact p strong { color: var(--white-color); font-weight: 600; }
+        .footer-contact a, .footer-links a { color: #ccc; }
+        .footer-links h3 { margin-bottom: 1.5rem; font-size: 1.2rem; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-contact a:hover, .footer-links a:hover { color: var(--accent-color); text-decoration: underline; }
+        .footer-bottom { text-align: center; padding: 20px 0; border-top: 1px solid var(--secondary-color); font-size: 0.9rem; color: #aaa; }
+        .footer-bottom p { margin: 0; }
+        
+        /* --- Mobile Responsive Styles --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .page-header h1 { font-size: 2.2rem; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
+            .hamburger { display: block; }
+            nav ul { display: none; flex-direction: column; width: 100%; background: var(--white-color); position: absolute; top: 72px; left: 0; text-align: center; box-shadow: 0 5px 10px rgba(0,0,0,0.1); padding: 10px 0; }
+            nav ul.active { display: flex; }
+            nav li { margin: 15px 0; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-about, .footer-contact, .footer-links { margin-bottom: 20px; }
+            .footer-about .footer-logo, .footer-about p { margin-left: auto; margin-right: auto; }
+        }
+        .footer-bottom a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+  color: var(--white-color);
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+       <div class="container">
+            <a href="index.html" class="logo-link"><img src="img/logo.png" alt="Prefers Solutions Logo" class="logo"></a>
+            <nav>
+                <div class="hamburger" id="hamburger-menu"><span></span><span></span><span></span></div>
+                <ul id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html" class="active">Our Work</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Work</h1>
+                <p>A Glimpse of Our Quality and Craftsmanship</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="container">
+                <p class="gallery-intro">Explore our finest work. Click "Send Quotation" on any item to instantly request pricing. Each item is crafted with precision to represent our clients' brands perfectly. <strong style="color: var(--primary-color);">The final step is to replace these placeholders with your own product photos.</strong></p>
+                
+                <div class="gallery-grid">
+                    <!-- Gallery Item: Mugs -->
+                    <div class="gallery-item">
+                        <img src="img/Mug.jpg" alt="A custom printed white coffee mug">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Custom Mugs</h3>
+                                <button class="quote-btn" data-product="Custom Mugs">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Diaries -->
+                    <div class="gallery-item">
+                        <img src="diaries.jpg" alt="A professional branded diary or notebook">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Branded Diaries</h3>
+                                <button class="quote-btn" data-product="Branded Diaries">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Bottles -->
+                    <div class="gallery-item">
+                        <img src="img/Bottle 2.jpg" alt="A stylish, reusable water bottle with a custom logo">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Printed Bottles</h3>
+                                <button class="quote-btn" data-product="Printed Bottles">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Pens -->
+                    <div class="gallery-item">
+                        <img src="pens.jpg" alt="A collection of elegant executive pens">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Executive Pens</h3>
+                                <button class="quote-btn" data-product="Executive Pens">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: T-Shirts -->
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=2080&auto=format&fit=crop" alt="A custom printed white t-shirt held up">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Customized T-Shirts</h3>
+                                <button class="quote-btn" data-product="Customized T-Shirts">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Gift Sets -->
+                    <div class="gallery-item">
+                        <img src="img/Corporate Gift Sets.jpg" alt="A beautifully packaged corporate gift set in a box">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Corporate Gift Sets</h3>
+                                <button class="quote-btn" data-product="Corporate Gift Sets">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Bags -->
+                    <div class="gallery-item">
+                        <img src="img/Bags.jpeg" alt="A stylish and durable backpack">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Promotional Bags</h3>
+                                <button class="quote-btn" data-product="Promotional Bags">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Tech Gadgets -->
+                    <div class="gallery-item">
+                        <img src="tech gadgets.jpg" alt="A modern portable speaker gadget">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Tech Gadgets</h3>
+                                <button class="quote-btn" data-product="Tech Gadgets">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Hoodies -->
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=2070&auto=format&fit=crop" alt="A collection of folded branded hoodies">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Branded Hoodies</h3>
+                                <button class="quote-btn" data-product="Branded Hoodies">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Travel Mugs -->
+                    <div class="gallery-item">
+                        <img src="img/Travel Mug.jpeg" alt="A sleek black travel mug for coffee on the go">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Travel Mugs</h3>
+                                <button class="quote-btn" data-product="Travel Mugs">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Gallery Item: Desk Organizers -->
+                    <div class="gallery-item">
+                        <img src="desk organizer.jpg" alt="A desk nameplate and organizer">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Desk Organizers</h3>
+                                <button class="quote-btn" data-product="Desk Organizers">Ask Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery Item: Welcome Kits -->
+                    <div class="gallery-item">
+                        <img src="img/Welcome kit.jpeg" alt="An employee receiving a welcome kit box">
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <h3>Employee Welcome Kits</h3>
+                                <button class="quote-btn" data-product="Employee Welcome Kits">Send Quotation</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main> 
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="img/logo.png" alt="Prefers Solutions Logo" class="footer-logo">
+                    <p>Your trusted partner for professional printing and corporate gifting solutions.</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><strong>Address:</strong> 416, Space Business Complex, Grant Road Kharadi, Pune 411014</p>
+                    <p><strong>Email:</strong> <a href="mailto:preferssolutions@gmail.com">preferssolutions@gmail.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+919325692105">+91 9325692105</a></p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Our Work</a></li>
+                        <li><a href="contactus.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+             <div class="footer-bottom">
+  <p>© 2025 Prefers Solutions. All Rights Reserved.</p>
+  <p>
+    Developed by 
+    <a href="https://www.fouriseindia.com/" target="_blank" rel="noopener noreferrer">
+      Fourise Software Solutions Pvt. Ltd.
+    </a>
+  </p>
+</div>
+        </div>
+    </footer>
+
+    <!-- =================================================================== -->
+    <!-- NEW: Hidden Web3Forms Form for Quotation Requests -->
+    <!-- =================================================================== -->
+    <form id="quote-form" action="https://api.web3forms.com/submit" method="POST" style="display: none;">
+        
+        <!-- IMPORTANT: REPLACE WITH YOUR ACTUAL WEB3FORMS ACCESS KEY -->
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
+        <!-- These fields will be filled by JavaScript -->
+        <input type="hidden" id="form-subject" name="subject">
+        <input type="hidden" id="form-message" name="message">
+        
+        <!-- Optional: Customize the "from" name in your email -->
+        <input type="hidden" name="from_name" value="Website Gallery Quote Request">
+    </form>
+
+
+    <!-- =================================================================== -->
+    <!-- Scripts -->
+    <!-- =================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+            if (hamburgerMenu && navLinks) {
+                hamburgerMenu.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // --- NEW: Quotation Button Logic ---
+            const quoteForm = document.getElementById('quote-form');
+            const quoteButtons = document.querySelectorAll('.quote-btn');
+            
+            quoteButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent any default link behavior
+                    event.stopPropagation(); // Stop click from bubbling to parent elements
+
+                    const clickedButton = this;
+                    const productName = clickedButton.dataset.product;
+
+                    // Prevent multiple submissions
+                    if (clickedButton.disabled) {
+                        return;
+                    }
+
+                    // Populate the hidden form
+                    document.getElementById('form-subject').value = `Quotation Request for: ${productName}`;
+                    document.getElementById('form-message').value = `Hello, \n\nA visitor from your website has requested a quotation for the following product: \n\nProduct: ${productName}\n\nPlease follow up accordingly.`;
+
+                    // Change button state to show it's working
+                    clickedButton.textContent = 'Sending...';
+                    clickedButton.disabled = true;
+
+                    // Use Fetch API to submit the form data without page reload
+                    const formData = new FormData(quoteForm);
+                    fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // On success, update the button to show it's sent
+                            clickedButton.textContent = 'Request Sent!';
+                            // The button will remain disabled to prevent re-sends
+                        } else {
+                            // On failure, alert the user and re-enable the button
+                            console.error('Error:', data.message);
+                            alert('Oops! Something went wrong. Please try again.');
+                            clickedButton.textContent = 'Send Quotation';
+                            clickedButton.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        // On network error, alert the user and re-enable the button
+                        console.error('Fetch Error:', error);
+                        alert('Oops! A network error occurred. Please try again.');
+                        clickedButton.textContent = 'Send Quotation';
+                        clickedButton.disabled = false;
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

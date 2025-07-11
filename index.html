@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prefers Solutions - Premium Corporate Gifting & Printing</title>
+    <meta name="description" content="Prefers Solutions offers custom printing for corporate gifts like diaries, bottles, mugs, pens, and customized clothing. Elevate your brand with our premium solutions.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Styles Embedded -->
+    <style>
+        /* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #063777; /* Deep Blue */
+    --secondary-color: #1C3F6E; /* Lighter Blue */
+    --accent-color: #FFD700; /* Gold/Yellow */
+    --text-color: #333;
+    --light-gray: #f8f9fa;
+    --white-color: #fff;
+    --font-family: 'Poppins', sans-serif;
+    --header-footer-bg: var(--white-color);
+}
+
+/* Reset & basics */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+p { margin-bottom: 1rem; }
+a { text-decoration: none; color: var(--secondary-color); transition: color 0.3s ease; }
+a:hover { color: var(--accent-color); }
+ul { list-style: none; }
+
+/* --- Header & Navigation --- */
+header {
+    background: var(--white-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    height: 50px;
+    
+}
+nav ul {
+    display: flex;
+    align-items: center;
+}
+nav li {
+    margin-left: 25px;
+}
+nav a {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-bottom: 2px solid transparent;
+    color: var(--primary-color);
+}
+nav a.active, nav a:hover {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background: var(--primary-color);
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Hero Section --- */
+.hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    color: var(--white-color);
+    background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 38, 71, 0.7);
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+.hero h1 {
+    color: var(--white-color);
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+.btn-primary {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+.btn-primary:hover {
+    background: #e6c300;
+    transform: translateY(-2px);
+}
+
+/* --- Content Sections --- */
+.featured-services, .why-choose-us {
+    padding: 60px 0;
+}
+.featured-services {
+    background: var(--light-gray);
+}
+h2 {
+    text-align: center;
+}
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+.card {
+    background: var(--white-color);
+    padding: 30px;
+    text-align: left;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+.card h3 {
+    font-size: 1.5rem;
+    text-align: left;
+}
+.card p {
+    flex-grow: 1;
+    text-align: left;
+}
+.card a {
+    font-weight: 600;
+    text-align: left;
+}
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+.feature-item h3 {
+    color: var(--secondary-color);
+}
+
+/* ========================================================= */
+/* ================== PROFESSIONAL FOOTER STYLES ============= */
+/* ========================================================= */
+footer {
+    background: var(--primary-color);
+    color: #ccc;
+    padding-top: 50px;
+}
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+.footer-about .footer-logo {
+    height: 45px;
+    margin-bottom: 1rem;
+    filter: brightness(0) invert(1);
+}
+.footer-about p {
+    color: #ccc;
+    max-width: 350px;
+}
+.footer-contact h3, .footer-links h3 {
+    color: var(--white-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+.footer-contact p {
+    color: #ccc;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+.footer-contact p strong {
+    color: var(--white-color);
+    font-weight: 600;
+}
+.footer-contact a, .footer-links a {
+    color: #ccc;
+}
+.footer-links li {
+    margin-bottom: 10px;
+}
+.footer-contact a:hover, .footer-links a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--secondary-color);
+    font-size: 0.9rem;
+    color: #aaa;
+}
+.footer-bottom p {
+    margin: 0;
+}
+
+/* ========================================================= */
+/* ================= MOBILE RESPONSIVE STYLES ============== */
+/* ========================================================= */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    .hero { height: 70vh; }
+    .hero h1 { font-size: 2.5rem; }
+
+    .hamburger { display: block; }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--header-footer-bg);
+        position: absolute;
+        top: 72px;
+        left: 0;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 10px 0;
+    }
+    nav ul.active { display: flex; }
+    nav li { margin: 15px 0; }
+
+    .service-cards, .features, .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-about, .footer-contact, .footer-links {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .footer-about .footer-logo, .footer-about p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Mobile Large - 420px and below */
+@media (max-width: 420px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    .hero { height: 60vh; }
+    .hero h1 { font-size: 2.2rem; }
+    nav li { margin: 12px 0; }
+    .btn-primary { padding: 10px 20px; font-size: 0.9rem; }
+}
+
+/* Mobile Medium - 375px and below */
+@media (max-width: 375px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+    .hero { height: 55vh; }
+    .hero h1 { font-size: 2rem; }
+    nav li { margin: 10px 0; }
+    .btn-primary { padding: 9px 18px; font-size: 0.85rem; }
+}
+
+/* Mobile Small - 320px and below */
+@media (max-width: 320px) {
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.2rem; }
+    .hero { height: 50vh; }
+    .hero h1 { font-size: 1.8rem; }
+    nav li { margin: 8px 0; }
+    .btn-primary { padding: 8px 15px; font-size: 0.8rem; }
+}
+
+.testimonials-slider {
+  background: var(--light-gray);
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.testimonials-slider h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  gap: 30px;
+  transition: transform 0.6s ease-in-out;
+}
+
+.testimonial-slide {
+  flex: 0 0 calc(33.333% - 20px); /* Show 3 slides per view */
+  background: var(--white-color);
+  padding: 25px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  font-size: 0.95rem;
+}
+
+.testimonial-slide .quote {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 15px;
+}
+.testimonial-slide .client {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .testimonial-slide {
+    flex: 0 0 100%;
+  }
+}
+
+.footer-bottom a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+  color: var(--white-color);
+}
+
+
+    </style>
+</head>
+<body>
+
+   <header>
+  <div class="container">
+    <a href="index.html" class="logo-link">
+      <img src="img/logo.png" alt="Prefers Solutions Logo" class="logo">
+    </a>
+    <nav>
+      <div class="hamburger" id="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul id="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="gallery.html">Our Work</a></li>
+        <li><a href="contactus.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Elevate Your Brand with Premium Corporate Gifting</h1>
+                <p>Customized printing solutions for memorable impressions. From diaries and mugs to custom apparel, we bring your vision to life.</p>
+                <a href="gallery.html" class="btn btn-primary">Explore Our Work</a>
+            </div>
+        </section>
+
+        <section class="featured-services">
+            <div class="container">
+                <h2>Our Core Offerings</h2>
+                <div class="service-cards">
+                    <div class="card">
+                        <h3>Corporate Gifting</h3>
+                        <p>High-quality, customized gifts like mugs, pens, and diaries that leave a lasting impact on clients and employees.</p>
+                        
+                    </div>
+                    <div class="card">
+                        <h3>Customise Clothing</h3>
+                        <p>Branded apparel including t-shirts, polos, and hoodies to unify your team and promote your brand.</p>
+    
+                    </div>
+                    <div class="card">
+                        <h3>Promotional Products</h3>
+                        <p>A wide range of promotional items to boost your marketing efforts and increase brand visibility at events.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-slider">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <div class="slider-wrapper">
+      <div class="slider" id="testimonial-slider">
+        
+        <div class="testimonial-slide">
+          <p class="quote">"PREFERS Solutions provided exceptional service and premium-quality customized merchandise for our corporate events..."</p>
+          <p class="client"><strong>Nitin Shinde</strong><br>Eaton</p>
+        </div>
+
+        <div class="testimonial-slide">
+          <p class="quote">"We at Davies Tech are extremely pleased with the services provided by PREFERS Solutions..."</p>
+          <p class="client"><strong>Prajwal Reddy</strong><br>Davies Tech</p>
+        </div>
+
+        <div class="testimonial-slide">
+          <p class="quote">"We sincerely appreciate the efforts of PREFERS Solutions in curating customized welcome kits..."</p>
+          <p class="client"><strong>Priti Das</strong><br>MD INDIA</p>
+        </div>
+
+        <div class="testimonial-slide">
+          <p class="quote">"We are extremely satisfied with the customized team gifts curated by PREFERS Solutions..."</p>
+          <p class="client"><strong>Akash Raut</strong><br>Winsun Wind</p>
+        </div>
+
+        <div class="testimonial-slide">
+          <p class="quote">"This Diwali, PREFERS Solutions helped us light up smiles across our team..."</p>
+          <p class="client"><strong>Ankita Mishra</strong><br>Affinity Services</p>
+        </div>
+
+        <div class="testimonial-slide">
+          <p class="quote">"PREFERS Solutions delivered a uniform solution that perfectly matched our operational needs..."</p>
+          <p class="client"><strong>Ramesh Rao</strong><br>IFB</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Why Partner with Prefers Solutions?</h2>
+                <div class="features">
+                    <div class="feature-item">
+                        <h3>Unmatched Quality</h3>
+                        <p>We use state-of-the-art printing technology and premium materials to ensure a flawless finish on every item.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Complete Customization</h3>
+                        <p>Your brand is unique. We offer full customization to perfectly match your brand identity and message.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Timely Delivery</h3>
+                        <p>We understand the importance of deadlines. Our streamlined process ensures your order is delivered on time, every time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- ====================================================== -->
+    <!-- ============== YOUR PROFESSIONAL FOOTER ============== -->
+    <!-- ====================================================== -->
+    <footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-about">
+        <img src="img/logo.png" alt="Prefers Solutions Logo" class="footer-logo">
+        <p>Your trusted partner for professional printing and corporate gifting solutions.</p>
+      </div>
+      <div class="footer-contact">
+        <h3>Contact Us</h3>
+        <p><strong>Address:</strong> 416, Space Business Complex, Grant Road Kharadi, Pune 411014</p>
+        <p><strong>Email:</strong> <a href="mailto:preferssolutions@gmail.com">preferssolutions@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+919325692105">+91 9325692105</a></p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="gallery.html">Our Work</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+     <div class="footer-bottom">
+  <p>© 2025 Prefers Solutions. All Rights Reserved.</p>
+  <p>
+    Developed by 
+    <a href="https://www.fouriseindia.com/" target="_blank" rel="noopener noreferrer">
+      Fourise Software Solutions Pvt. Ltd.
+    </a>
+  </p>
+</div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navLinks = document.getElementById('nav-links');
+    if (hamburgerMenu && navLinks) {
+      hamburgerMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('testimonial-slider');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const totalSlides = slides.length;
+    let index = 0;
+
+    setInterval(() => {
+      index++;
+      if (index > totalSlides - 3) {
+        index = 0; // loop back to start
+      }
+      const offset = index * (100 / 3); // move by one slide width (1 of 3 visible)
+      slider.style.transform = `translateX(-${offset}%)`;
+    }, 3000);
+  });
+</script>
+
+
+</body>
+</html>

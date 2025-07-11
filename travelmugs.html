@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Travel Mugs - Prefers Solutions</title>
+    <style>
+        /* General Body and Font Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Navigation Bar Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo a {
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            padding-bottom: 5px;
+            transition: color 0.2s ease-in-out;
+        }
+        
+        nav ul li a:hover {
+            color: #007bff;
+        }
+        
+        nav ul li a.active {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+        }
+
+        /* Main Content Styles */
+        main.product-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .product-page h1 {
+            text-align: center;
+            margin: 2rem 0 3rem 0;
+            font-size: 2.8rem;
+            font-weight: 600;
+        }
+
+        /* Product Grid Styles */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2.5rem;
+            padding-bottom: 4rem;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-image-container {
+            background-color: #f7f7f7;
+            padding: 1rem;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .product-card .price {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-actions {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .btn-quote, .btn-add {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-quote {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+        
+        .btn-quote:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-add {
+            background-color: #fff;
+            color: #333;
+            margin-top: 0.5rem;
+        }
+
+        .btn-add:hover {
+            background-color: #f0f0f0;
+            border-color: #adadad;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Prefers Solutions</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="gallery.html" class="active">Our Work</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-page">
+        <h1>Our Travel Mugs</h1>
+        <div class="product-grid">
+
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/L12wPEn.jpeg" alt="300ml Vacuum Insulated Bottle">
+                </div>
+                <div class="product-info">
+                    <h2>300ml Insulated Bottle</h2>
+                    <p class="price">₹270.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/kdkxWCV.jpeg" alt="Bamboo 2.0 Mug">
+                </div>
+                <div class="product-info">
+                    <h2>Bamboo 2.0</h2>
+                    <p class="price">₹170.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/Bf27v7x.jpeg" alt="Bistro Double Wall Travel Mug">
+                </div>
+                <div class="product-info">
+                    <h2>Bistro Travel Mug</h2>
+                    <p class="price">₹270.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/2s42N6m.jpeg" alt="Black Printed Ceramic Mug">
+                </div>
+                <div class="product-info">
+                    <h2>Black Printed Ceramic Mug</h2>
+                    <p class="price">₹200.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/yLmn5aH.jpeg" alt="Bot-all Nano Mug">
+                </div>
+                <div class="product-info">
+                    <h2>Bot-all Nano Mug</h2>
+                    <p class="price">₹360.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/vHqYyGz.jpeg" alt="Brew Buddy Glass Coffee Mug">
+                </div>
+                <div class="product-info">
+                    <h2>Brew Buddy Glass Mug</h2>
+                    <p class="price">₹535.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+            
+            <!-- NEW Product 7 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/M152t6K.jpeg" alt="Classic White Ceramic Mug">
+                </div>
+                <div class="product-info">
+                    <h2>Classic White Mug</h2>
+                    <p class="price">₹150.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+
+            <!-- NEW Product 8 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://i.imgur.com/rG7y5oA.jpeg" alt="Stainless Steel Travel Mug">
+                </div>
+                <div class="product-info">
+                    <h2>Steel Travel Mug</h2>
+                    <p class="price">₹320.00</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-quote">Request a Quote</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+</html>
