@@ -208,7 +208,21 @@
         .testimonials-slider { background: var(--light-gray); padding: 60px 0; }
         .testimonials-slider h2 { text-align: center; margin-bottom: 40px; }
         .slider-wrapper { overflow: hidden; }
-        .slider { display: flex; gap: 30px; }
+        
+        /* === CORRECTED SLIDER CSS (APPLIES TO ALL SCREENS) === */
+        .slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto; /* This makes it scrollable */
+            scroll-behavior: smooth; /* Ensures smooth transitions */
+            -ms-overflow-style: none;  /* Hides scrollbar on IE and Edge */
+            scrollbar-width: none;  /* Hides scrollbar on Firefox */
+        }
+        /* Hides scrollbar on Chrome, Safari and Opera */
+        .slider::-webkit-scrollbar {
+            display: none;
+        }
+
         .testimonial-slide {
             flex: 0 0 calc(33.333% - 20px); /* Desktop: Show 3 slides per view */
             background: var(--white-color); padding: 25px 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
@@ -254,17 +268,15 @@
 
             /* --- Stats Counter Responsive Styles --- */
             .stats-section {
-                /* Refinement: Reduced padding on mobile for better spacing */
                 padding: 50px 0;
             }
             .stats-container {
-                grid-template-columns: 1fr; /* Stack items vertically */
-                gap: 40px; /* Increase gap for vertical layout */
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             .stat-item h3.counter {
-                font-size: 3rem; /* Slightly smaller font for mobile */
+                font-size: 3rem;
             }
-
 
             .footer-about, .footer-contact, .footer-links { margin-bottom: 20px; text-align: center; }
             .footer-about .footer-logo, .footer-about p { margin-left: auto; margin-right: auto; }
@@ -275,16 +287,11 @@
                 margin-left: -20px; /* Counteract .container padding */
             }
             .slider {
-                overflow-x: auto;
                 scroll-snap-type: x mandatory;
-                padding-left: 20px;  /* This adds the initial space on the left */
-                padding-right: 20px; /* This adds space on the right */
+                padding-left: 20px;
+                padding-right: 20px;
                 gap: 15px;
-                -ms-overflow-style: none; /* IE and Edge */
-                scrollbar-width: none; /* Firefox */
             }
-            .slider::-webkit-scrollbar { display: none; }
-            
             .testimonial-slide {
                 flex: 0 0 85%; /* Adjust width to leave space around it */
                 scroll-snap-align: center;
@@ -441,7 +448,6 @@
                 <p><strong>Email:</strong> <a href="mailto:preferssolutions@gmail.com">preferssolutions@gmail.com</a></p>
                 <p><strong>Phone:</strong> <a href="tel:+919325692105">+91 9325692105</a></p>
                 
-                <!-- Social Icons with Inline CSS -->
                 <div style="margin-top: 15px;">
                     <a 
                         href="https://wa.me/919325692105" 
@@ -451,9 +457,6 @@
                         style="color: #ffffff; font-size: 24px; margin-right: 15px; text-decoration: none;">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    
-                    <!-- CORRECTED: Comment is now BEFORE the <a> tag -->
-                    <!-- Replace # in the href below with your LinkedIn URL -->
                     <a 
                         href="#" 
                         target="_blank" 
@@ -462,9 +465,6 @@
                         style="color: #ffffff; font-size: 24px; margin-right: 15px; text-decoration: none;">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-
-                    <!-- CORRECTED: Comment is now BEFORE the <a> tag -->
-                    <!-- Replace # in the href below with your Instagram URL -->
                     <a 
                         href="#" 
                         target="_blank" 
@@ -503,44 +503,50 @@
             });
         }
 
-        // --- Testimonial Slider (Existing Logic) ---
+        /* ========================================= */
+        /* === TESTIMONIAL SLIDER SCRIPT === */
+        /* ========================================= */
         const slider = document.getElementById('testimonial-slider');
         if (slider) {
             const slides = slider.querySelectorAll('.testimonial-slide');
-            if (slides.length > 1) { // Only run if there are slides
-                const slideInterval = 3000;
-                let autoScrollInterval = setInterval(advanceSlider, slideInterval);
+            const slideInterval = 3000; // 3 seconds
+            let currentIndex = 0;
+            let autoScrollInterval;
 
-                function advanceSlider() {
-                    const isMobile = window.innerWidth <= 768;
-                    let currentSlideIndex = 0;
-                    
-                    if (isMobile) {
-                        let minDistance = Infinity;
-                        const viewportCenter = slider.scrollLeft + slider.clientWidth / 2;
-                        slides.forEach((slide, index) => {
-                            const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-                            const distance = Math.abs(viewportCenter - slideCenter);
-                            if (distance < minDistance) {
-                                minDistance = distance;
-                                currentSlideIndex = index;
-                            }
-                        });
-                    } else {
-                        const slideWidth = slides[0].offsetWidth;
-                        const gap = parseInt(window.getComputedStyle(slider).gap);
-                        currentSlideIndex = Math.round(slider.scrollLeft / (slideWidth + gap));
-                    }
+            const advanceSlider = () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                const nextSlide = slides[currentIndex];
                 
-                    let nextSlideIndex = (currentSlideIndex + 1) % slides.length;
-                    const nextSlide = slides[nextSlideIndex];
-                    const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
+                const isMobile = window.innerWidth <= 768;
+                let scrollLeftPosition;
 
-                    slider.scrollTo({ 
-                        left: scrollLeftPosition, 
-                        behavior: 'smooth' 
-                    });
+                // On mobile, we snap to the center of the slide
+                if (isMobile) {
+                    scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
+                } else {
+                    // On desktop, we just scroll to the start of the slide
+                    scrollLeftPosition = nextSlide.offsetLeft;
                 }
+
+                slider.scrollTo({
+                    left: scrollLeftPosition,
+                    behavior: 'smooth'
+                });
+            };
+
+            const startSlider = () => {
+                clearInterval(autoScrollInterval); 
+                autoScrollInterval = setInterval(advanceSlider, slideInterval);
+            };
+
+            const stopSlider = () => {
+                clearInterval(autoScrollInterval);
+            };
+
+            if (slides.length > 1) {
+                startSlider();
+                slider.addEventListener('mouseenter', stopSlider);
+                slider.addEventListener('mouseleave', startSlider);
             }
         }
 
@@ -554,9 +560,12 @@
         const startCounter = (entry) => {
             if (entry.isIntersecting) {
                 counters.forEach(counter => {
+                    if (counter.classList.contains('animated')) return;
+                    counter.classList.add('animated');
+
                     const target = +counter.getAttribute('data-target');
                     let count = 0;
-                    const duration = 1200; // 1.2 seconds for a fast animation
+                    const duration = 1200;
                     const increment = target / (duration / 10); 
 
                     const updateCount = () => {
@@ -568,10 +577,8 @@
                             counter.innerText = target + '+';
                         }
                     };
-
                     updateCount();
                 });
-                observer.unobserve(statsSection);
             }
         };
 
