@@ -207,11 +207,7 @@
         /* --- Testimonial Slider --- */
         .testimonials-slider { background: var(--light-gray); padding: 60px 0; }
         .testimonials-slider h2 { text-align: center; margin-bottom: 40px; }
-        
-        /* CSS FIX: Removed 'overflow: hidden' from the wrapper */
-        .slider-wrapper {
-            /* No overflow property needed here */
-        }
+        .slider-wrapper { /* No overflow needed */ }
         
         .slider {
             display: flex;
@@ -299,8 +295,8 @@
 </head>
 <body>
 
-   <header>
-      <!-- ... (header content is unchanged) ... -->
+    <!-- Header, Main, and Footer content remains the same -->
+    <header>
       <div class="container">
         <a href="index.html" class="logo-link">
           <img src="img/logo.png" alt="Prefers Solutions Logo" class="logo">
@@ -320,17 +316,14 @@
         </nav>
       </div>
     </header>
-
     <main>
-       <!-- ... (main content is unchanged) ... -->
-       <section class="hero">
+        <section class="hero">
             <div class="hero-content">
                 <h1>Welcome to Prefers Solutions – where ideas meet identity</h1>
                 <p>From branded apparel to unforgettable corporate gifts – we've got you covered.</p>
                 <a href="gallery.html" class="btn-primary">Explore Our Work</a>
             </div>
         </section>
-
         <section class="featured-services">
             <div class="container">
                 <h2>Our Core Offerings</h2>
@@ -350,7 +343,6 @@
                 </div>
             </div>
         </section>
-
         <section class="stats-section" id="stats-section">
             <div class="container">
                 <h2>Trusted By Brands</h2>
@@ -366,49 +358,39 @@
                 </div>
             </div>
         </section>
-
         <section class="testimonials-slider">
           <div class="container">
             <h2>What Our Clients Say</h2>
             <div class="slider-wrapper">
               <div class="slider" id="testimonial-slider">
-                
                 <div class="testimonial-slide">
                   <p class="quote">"PREFERS Solutions provided exceptional service and premium-quality customized merchandise for our corporate events..."</p>
                   <p class="client"><strong>Nitin Shinde</strong><br>Eaton</p>
                 </div>
-
                 <div class="testimonial-slide">
                   <p class="quote">"We at Davies Tech are extremely pleased with the services provided by PREFERS Solutions..."</p>
                   <p class="client"><strong>Prajwal Reddy</strong><br>Davies Tech</p>
                 </div>
-
                 <div class="testimonial-slide">
                   <p class="quote">"We sincerely appreciate the efforts of PREFERS Solutions in curating customized welcome kits..."</p>
                   <p class="client"><strong>Priti Das</strong><br>MD INDIA</p>
                 </div>
-
                 <div class="testimonial-slide">
                   <p class="quote">"We are extremely satisfied with the customized team gifts curated by PREFERS Solutions..."</p>
                   <p class="client"><strong>Akash Raut</strong><br>Winsun Wind</p>
                 </div>
-
                 <div class="testimonial-slide">
                   <p class="quote">"This Diwali, PREFERS Solutions helped us light up smiles across our team..."</p>
                   <p class="client"><strong>Ankita Mishra</strong><br>Affinity Services</p>
                 </div>
-
                 <div class="testimonial-slide">
                   <p class="quote">"PREFERS Solutions delivered a uniform solution that perfectly matched our operational needs..."</p>
                   <p class="client"><strong>Ramesh Rao</strong><br>IFB</p>
                 </div>
-
               </div>
             </div>
           </div>
         </section>
-
-
         <section class="why-choose-us">
             <div class="container">
                 <h2>Why Partner with Prefers Solutions?</h2>
@@ -429,9 +411,7 @@
             </div>
         </section>
     </main>
-
-  <footer>
-    <!-- ... (footer content is unchanged) ... -->
+    <footer>
     <div class="container">
         <div class="footer-content">
             <div class="footer-about">
@@ -501,27 +481,43 @@
         }
 
         /* ========================================= */
-        /* === TESTIMONIAL SLIDER SCRIPT === */
+        /* === FINAL, ROBUST TESTIMONIAL SLIDER SCRIPT === */
         /* ========================================= */
         const slider = document.getElementById('testimonial-slider');
         if (slider) {
             const slides = slider.querySelectorAll('.testimonial-slide');
-            const slideInterval = 3000;
+            const slideInterval = 3000; // 3 seconds
             let currentIndex = 0;
             let autoScrollInterval;
 
             const advanceSlider = () => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                const nextSlide = slides[currentIndex];
+                const isMobile = window.innerWidth <= 768;
                 
-                // JAVASCRIPT FIX: This universal logic works for all screen sizes and modes.
-                // It calculates the position needed to center the next slide in the visible area.
-                const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
-
-                slider.scrollTo({
-                    left: scrollLeftPosition,
-                    behavior: 'smooth'
-                });
+                if (isMobile) {
+                    // --- MOBILE LOGIC: Center the next individual slide ---
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    const nextSlide = slides[currentIndex];
+                    const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
+                    
+                    slider.scrollTo({
+                        left: scrollLeftPosition,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // --- DESKTOP LOGIC: Scroll by one "page" (the width of the visible container) ---
+                    let newScrollLeft = slider.scrollLeft + slider.clientWidth;
+                    
+                    // If the next scroll position is past the end, loop back to the start.
+                    // A small buffer (1px) is added to handle rounding errors.
+                    if (newScrollLeft >= slider.scrollWidth - slider.clientWidth - 1) {
+                        newScrollLeft = 0;
+                    }
+                    
+                    slider.scrollTo({
+                        left: newScrollLeft,
+                        behavior: 'smooth'
+                    });
+                }
             };
 
             const startSlider = () => {
@@ -539,6 +535,7 @@
                 slider.addEventListener('mouseleave', startSlider);
             }
         }
+
 
         /* ========================================= */
         /* === STATS COUNTER ANIMATION SCRIPT === */
