@@ -107,6 +107,10 @@
         .contact-info-container h2 { margin-bottom: 1.5rem; }
         .contact-info-item { margin-bottom: 2rem; }
         .contact-info-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        /* === THIS IS THE FIX FOR THE MAIN CONTENT === */
+        .contact-info-item p {
+            overflow-wrap: break-word; /* Allows the long email address to wrap */
+        }
         .map-container { border-radius: 8px; overflow: hidden; margin-top: 2rem; }
 
         .whatsapp-link {
@@ -141,7 +145,7 @@
             color: #ccc; 
             margin-bottom: 1rem; 
             line-height: 1.5; 
-            overflow-wrap: break-word; /* This fix is correctly in place */
+            overflow-wrap: break-word; /* This fix is correctly in place for the footer */
         }
         .footer-contact p strong { color: var(--white-color); font-weight: 600; }
         .footer-contact a, .footer-links a { color: #ccc; }
