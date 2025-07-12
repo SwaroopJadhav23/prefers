@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS Styles Embedded -->
     <style>
@@ -186,7 +187,7 @@
                     <div class="gallery-item" data-product="Corporate Gift Sets"><img src="img/Corporate Gift Sets.jpg" alt="A beautifully packaged corporate gift set in a box"><div class="overlay"><div class="overlay-content"><h3>Corporate Gift Sets</h3><button class="quote-btn">Send Quotation</button></div></div></div>
                     <div class="gallery-item" data-product="Promotional Bags"><img src="img/Bags.jpeg" alt="A stylish and durable backpack"><div class="overlay"><div class="overlay-content"><h3>Promotional Bags</h3><button class="quote-btn">Send Quotation</button></div></div></div>
                     <div class="gallery-item" data-product="Tech Gadgets"><img src="img/tech.jpg" alt="A modern portable speaker gadget"><div class="overlay"><div class="overlay-content"><h3>Tech Gadgets</h3><button class="quote-btn">Send Quotation</button></div></div></div>
-                    <div class="gallery-item" data-product="Branded Hoodies"><img src="img/hoodies.jpg" alt="A collection of folded branded hoodies"><div class="overlay"><div class="overlay-content"><h3>Branded Hoodies</h3><button class="quote-btn">Send Quotation</button></div></div></div>
+                    <div class="gallery-item" data-product="Branded Hoodies"><img src="img/Hoodies.jpg" alt="A collection of folded branded hoodies"><div class="overlay"><div class="overlay-content"><h3>Branded Hoodies</h3><button class="quote-btn">Send Quotation</button></div></div></div>
                     <div class="gallery-item" data-product="Travel Mugs"><img src="img/Travel Mug.jpeg" alt="A sleek black travel mug for coffee on the go"><div class="overlay"><div class="overlay-content"><h3>Travel Mugs</h3><button class="quote-btn">Send Quotation</button></div></div></div>
                     <div class="gallery-item" data-product="Desk Organizers"><img src="img/desk.png" alt="A desk nameplate and organizer"><div class="overlay"><div class="overlay-content"><h3>Desk Organizers</h3><button class="quote-btn">Send Quotation</button></div></div></div>
                     <div class="gallery-item" data-product="Employee Welcome Kits"><img src="img/Wel.jpg" alt="An employee receiving a welcome kit box"><div class="overlay"><div class="overlay-content"><h3>Employee Welcome Kits</h3><button class="quote-btn">Send Quotation</button></div></div></div>
@@ -195,17 +196,63 @@
         </section>
     </main> 
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about"><img src="img/logo.png" alt="Prefers Solutions Logo" class="footer-logo"><p>From branded apparel to unforgettable corporate gifts – we've got you covered.
-</p></div>
-                <div class="footer-contact"><h3>Contact Us</h3><p><strong>Address:</strong> 416, Space Business Complex, Grant Road Kharadi, Pune 411014</p><p><strong>Email:</strong> <a href="mailto:preferssolutions@gmail.com">preferssolutions@gmail.com</a></p><p><strong>Phone:</strong> <a href="tel:+919325692105">+91 9325692105</a></p></div>
-                <div class="footer-links"><h3>Quick Links</h3><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="gallery.html">Our Work</a></li><li><a href="contactus.html">Contact Us</a></li></ul></div>
+   <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-about">
+                <img src="img/logo.png" alt="Prefers Solutions Logo" class="footer-logo">
+                <p>From branded apparel to unforgettable corporate gifts – we've got you covered.</p>
             </div>
-            <div class="footer-bottom"><p>© 2025 Prefers Solutions. All Rights Reserved.</p><p>Developed by <a href="https://www.fouriseindia.com/" target="_blank" rel="noopener noreferrer">Fourise Software Solutions Pvt. Ltd.</a></p></div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><strong>Address:</strong> 416, Space Business Complex, Grant Road Kharadi, Pune 411014</p>
+                <p><strong>Email:</strong> <a href="mailto:preferssolutions@gmail.com">preferssolutions@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+919325692105">+91 9325692105</a></p>
+                
+                <!-- Social Icons with Inline CSS -->
+                <div style="margin-top: 15px;">
+                    <a 
+                        href="https://wa.me/919325692105" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        aria-label="Chat on WhatsApp"
+                        style="color: #ffffff; font-size: 24px; margin-right: 15px; text-decoration: none;">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a 
+                        href="#" <!-- Replace # with your LinkedIn URL -->
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        aria-label="Follow on LinkedIn"
+                        style="color: #ffffff; font-size: 24px; margin-right: 15px; text-decoration: none;">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a 
+                        href="#" <!-- Replace # with your Instagram URL -->
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        aria-label="Follow on Instagram"
+                        style="color: #ffffff; font-size: 24px; margin-right: 0; text-decoration: none;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Our Work</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>© 2025 Prefers Solutions. All Rights Reserved.</p>
+            <p>Developed by <a href="https://www.fouriseindia.com/" target="_blank" rel="noopener noreferrer">Fourise Software Solutions Pvt. Ltd.</a></p>
+        </div>
+    </div>
+</footer>
 
     <div class="modal-overlay" id="quote-modal">
         <div class="modal-content">
