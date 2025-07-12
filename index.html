@@ -235,7 +235,12 @@
         .footer-about .footer-logo { height: 45px; margin-bottom: 1rem; filter: brightness(0) invert(1); }
         .footer-about p { color: #ccc; max-width: 350px; }
         .footer-contact h3, .footer-links h3 { color: var(--white-color); margin-bottom: 1.5rem; font-size: 1.2rem; }
-        .footer-contact p { color: #ccc; margin-bottom: 1rem; line-height: 1.5; }
+        .footer-contact p { 
+            color: #ccc; 
+            margin-bottom: 1rem; 
+            line-height: 1.5; 
+            overflow-wrap: break-word; /* FIX: Prevents long text from overflowing */
+        }
         .footer-contact p strong { color: var(--white-color); font-weight: 600; }
         .footer-contact a, .footer-links a { color: #ccc; }
         .footer-links li { margin-bottom: 10px; }
@@ -490,13 +495,9 @@
             let currentIndex = 0;
             let autoScrollInterval;
 
-            // --- FIX FOR "REQUEST DESKTOP SITE" ON MOBILE ---
-            // This detects if the viewport is pretending to be a wide screen on a small device.
-            // We check if innerWidth is greater than the physical screen width.
             const isFakeDesktop = window.innerWidth > screen.width;
 
             if (isFakeDesktop && window.innerWidth > 768) {
-                // If so, force the slider to the very beginning for a clean starting view.
                 slider.scrollLeft = 0;
             }
             
@@ -504,7 +505,6 @@
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile || isFakeDesktop) {
-                    // --- MOBILE & FAKE DESKTOP LOGIC: Center the next individual slide ---
                     currentIndex = (currentIndex + 1) % slides.length;
                     const nextSlide = slides[currentIndex];
                     const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
@@ -514,7 +514,6 @@
                         behavior: 'smooth'
                     });
                 } else {
-                    // --- REAL DESKTOP LOGIC: Scroll by one "page" ---
                     let newScrollLeft = slider.scrollLeft + slider.clientWidth;
                     if (newScrollLeft >= slider.scrollWidth - slider.clientWidth - 1) {
                         newScrollLeft = 0;
