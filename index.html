@@ -207,24 +207,26 @@
         /* --- Testimonial Slider --- */
         .testimonials-slider { background: var(--light-gray); padding: 60px 0; }
         .testimonials-slider h2 { text-align: center; margin-bottom: 40px; }
-        .slider-wrapper { overflow: hidden; }
         
-        /* === CORRECTED SLIDER CSS (APPLIES TO ALL SCREENS) === */
+        /* CSS FIX: Removed 'overflow: hidden' from the wrapper */
+        .slider-wrapper {
+            /* No overflow property needed here */
+        }
+        
         .slider {
             display: flex;
             gap: 30px;
-            overflow-x: auto; /* This makes it scrollable */
-            scroll-behavior: smooth; /* Ensures smooth transitions */
-            -ms-overflow-style: none;  /* Hides scrollbar on IE and Edge */
-            scrollbar-width: none;  /* Hides scrollbar on Firefox */
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-        /* Hides scrollbar on Chrome, Safari and Opera */
         .slider::-webkit-scrollbar {
             display: none;
         }
 
         .testimonial-slide {
-            flex: 0 0 calc(33.333% - 20px); /* Desktop: Show 3 slides per view */
+            flex: 0 0 calc(33.333% - 20px);
             background: var(--white-color); padding: 25px 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             font-size: 0.95rem;
         }
@@ -266,25 +268,16 @@
 
             .service-cards, .features, .footer-content { grid-template-columns: 1fr; }
 
-            /* --- Stats Counter Responsive Styles --- */
-            .stats-section {
-                padding: 50px 0;
-            }
-            .stats-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .stat-item h3.counter {
-                font-size: 3rem;
-            }
+            .stats-section { padding: 50px 0; }
+            .stats-container { grid-template-columns: 1fr; gap: 40px; }
+            .stat-item h3.counter { font-size: 3rem; }
 
             .footer-about, .footer-contact, .footer-links { margin-bottom: 20px; text-align: center; }
             .footer-about .footer-logo, .footer-about p { margin-left: auto; margin-right: auto; }
 
-            /* --- UPDATED TESTIMONIAL SLIDER STYLES FOR MOBILE --- */
             .slider-wrapper {
                 width: 100vw;
-                margin-left: -20px; /* Counteract .container padding */
+                margin-left: -20px;
             }
             .slider {
                 scroll-snap-type: x mandatory;
@@ -293,7 +286,7 @@
                 gap: 15px;
             }
             .testimonial-slide {
-                flex: 0 0 85%; /* Adjust width to leave space around it */
+                flex: 0 0 85%;
                 scroll-snap-align: center;
             }
         }
@@ -307,6 +300,7 @@
 <body>
 
    <header>
+      <!-- ... (header content is unchanged) ... -->
       <div class="container">
         <a href="index.html" class="logo-link">
           <img src="img/logo.png" alt="Prefers Solutions Logo" class="logo">
@@ -328,7 +322,8 @@
     </header>
 
     <main>
-        <section class="hero">
+       <!-- ... (main content is unchanged) ... -->
+       <section class="hero">
             <div class="hero-content">
                 <h1>Welcome to Prefers Solutions – where ideas meet identity</h1>
                 <p>From branded apparel to unforgettable corporate gifts – we've got you covered.</p>
@@ -436,6 +431,7 @@
     </main>
 
   <footer>
+    <!-- ... (footer content is unchanged) ... -->
     <div class="container">
         <div class="footer-content">
             <div class="footer-about">
@@ -510,7 +506,7 @@
         const slider = document.getElementById('testimonial-slider');
         if (slider) {
             const slides = slider.querySelectorAll('.testimonial-slide');
-            const slideInterval = 3000; // 3 seconds
+            const slideInterval = 3000;
             let currentIndex = 0;
             let autoScrollInterval;
 
@@ -518,16 +514,9 @@
                 currentIndex = (currentIndex + 1) % slides.length;
                 const nextSlide = slides[currentIndex];
                 
-                const isMobile = window.innerWidth <= 768;
-                let scrollLeftPosition;
-
-                // On mobile, we snap to the center of the slide
-                if (isMobile) {
-                    scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
-                } else {
-                    // On desktop, we just scroll to the start of the slide
-                    scrollLeftPosition = nextSlide.offsetLeft;
-                }
+                // JAVASCRIPT FIX: This universal logic works for all screen sizes and modes.
+                // It calculates the position needed to center the next slide in the visible area.
+                const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
 
                 slider.scrollTo({
                     left: scrollLeftPosition,
@@ -550,7 +539,6 @@
                 slider.addEventListener('mouseleave', startSlider);
             }
         }
-
 
         /* ========================================= */
         /* === STATS COUNTER ANIMATION SCRIPT === */
