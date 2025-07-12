@@ -295,7 +295,7 @@
 </head>
 <body>
 
-    <!-- Header, Main, and Footer content remains the same -->
+    <!-- Header, Main, and Footer content is unchanged -->
     <header>
       <div class="container">
         <a href="index.html" class="logo-link">
@@ -490,11 +490,21 @@
             let currentIndex = 0;
             let autoScrollInterval;
 
+            // --- FIX FOR "REQUEST DESKTOP SITE" ON MOBILE ---
+            // This detects if the viewport is pretending to be a wide screen on a small device.
+            // We check if innerWidth is greater than the physical screen width.
+            const isFakeDesktop = window.innerWidth > screen.width;
+
+            if (isFakeDesktop && window.innerWidth > 768) {
+                // If so, force the slider to the very beginning for a clean starting view.
+                slider.scrollLeft = 0;
+            }
+            
             const advanceSlider = () => {
                 const isMobile = window.innerWidth <= 768;
                 
-                if (isMobile) {
-                    // --- MOBILE LOGIC: Center the next individual slide ---
+                if (isMobile || isFakeDesktop) {
+                    // --- MOBILE & FAKE DESKTOP LOGIC: Center the next individual slide ---
                     currentIndex = (currentIndex + 1) % slides.length;
                     const nextSlide = slides[currentIndex];
                     const scrollLeftPosition = nextSlide.offsetLeft + (nextSlide.offsetWidth / 2) - (slider.clientWidth / 2);
@@ -504,11 +514,8 @@
                         behavior: 'smooth'
                     });
                 } else {
-                    // --- DESKTOP LOGIC: Scroll by one "page" (the width of the visible container) ---
+                    // --- REAL DESKTOP LOGIC: Scroll by one "page" ---
                     let newScrollLeft = slider.scrollLeft + slider.clientWidth;
-                    
-                    // If the next scroll position is past the end, loop back to the start.
-                    // A small buffer (1px) is added to handle rounding errors.
                     if (newScrollLeft >= slider.scrollWidth - slider.clientWidth - 1) {
                         newScrollLeft = 0;
                     }
@@ -535,7 +542,6 @@
                 slider.addEventListener('mouseleave', startSlider);
             }
         }
-
 
         /* ========================================= */
         /* === STATS COUNTER ANIMATION SCRIPT === */
